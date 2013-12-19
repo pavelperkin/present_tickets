@@ -1,31 +1,12 @@
-<h1>Listing tickets</h1>
+<div class="row-fluid">
+  <div class="span6">
+  <h1 class="text-center" style='color: #DA70D6'><%= current_user.name || current_user.email %></h1>
+    <%= render 'tickets', tickets: @tickets_my%>
+  </div>
+  <div class="span6">
+  <h1 class="text-center" style='color: #8470FF'><%= @not_me.name || @not_me.email%></h1>
+    <%= render 'tickets', tickets: @tickets_not_my%>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Header</th>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @tickets.each do |ticket| %>
-      <tr>
-        <td><%= ticket.user_id %></td>
-        <td><%= ticket.header %></td>
-        <td><%= ticket.description %></td>
-        <td><%= link_to 'Show', ticket %></td>
-        <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Ticket', new_ticket_path %>

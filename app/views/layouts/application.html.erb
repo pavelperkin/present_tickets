@@ -5,10 +5,29 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Marck+Script&subset=cyrillic' rel='stylesheet' type='text/css'>
+   <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
-<%= yield %>
-
+	<div class="navbar navbar-static-top navbar-inverse">
+    <div class="navbar-inner">
+      <div class="container">
+        <ul class="nav pull-right" id="loginbar"> 
+				  <% if user_signed_in? %>
+				  	<li><%= link_to (current_user.name || current_user.email), root_path %></li>
+				    <li><%= link_to 'Добавить купон', new_ticket_path %></li>
+				    <li><%= link_to "Выйти", destroy_user_session_path %></li>
+				  <% else %>  
+				    <li><%= link_to "Войти", new_user_session_path%> </li>
+				    <li><%= link_to "Регистрация", new_user_registration_path%> </li>
+				  <% end %>
+				</ul>
+      </div>
+    </div>
+  </div>
+  <div class='content container' id="main-wrapper">
+    <br/><br/>
+    <%= yield %>
+  </div>
 </body>
 </html>

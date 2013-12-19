@@ -1,0 +1,22 @@
+<% tickets.each_with_index do |ticket, index| %>
+  <div class="row-fluid">
+	  <div class="offset2 span8  well">
+	  	<h4 style='margin-top: -10px; color:#FF7F50;'><%= "#{index+1}. #{ticket.header}" %></h4>
+	  	<p style='color:grey'>
+	  		<%= ticket.description %>
+	  	</p>	  	
+	  	<br>
+	  	<% if ticket.user_id == current_user.id%>
+		  	<%= form_for ticket do |f| %>
+		  	  <% if ticket.user_id == 1 %>
+		  	    <%= f.hidden_field :user_id, :value => 2%>
+		  	  <% else %>
+		  	    <%= f.hidden_field :user_id, :value => 1%>
+		  	  <% end %>
+		  	  <%= f.submit 'Использовать', :class => 'pull-right btn btn-success', :style => 'margin-bottom: -10px' %>
+		  	<% end %>
+	  	<% end %>
+	  </div>
+  </div>
+<% end %>
+
